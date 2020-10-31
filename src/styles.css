@@ -8,32 +8,56 @@ h1{
 
 .content{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
+}
+
+.right{
+    width: 90%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.left{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 90%;
+    height: 90%;
 }
 
 #view{
     padding: 16px;
     color: #FFF;
-    width: 700px;
-    height: 400px;
+    overflow: hidden;
+    width: 90vw;
+    max-width: 600px;
+    height: 90%;
     display: flex;
     box-shadow: 1px 1px 10px 1px rgba(255, 255, 255, .1);
+}
+
+#view #code{
+    overflow: hidden;
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 #view #bar{
     background-color: #FFF;
     width: .8px;
     height: 25px;
-
 }
 
 #input{
     color: #FFF;
-    width: 50%;
-    min-height: 40px;
-    max-height: 60px;
+    width: 70%;
+    height: 70%;
     padding: 8px;
     background: #000;
     border-radius: 8px;
@@ -47,7 +71,17 @@ h1{
     box-shadow: 1px 1px 10px 1px rgba(255, 255, 255, .1);
     width: 100px;
     height: 40px;
+    margin-top: 20px;
     transition: .4s;
+}
+
+label:last-child::after{
+    content: '';
+    background-color: #FFF;
+    position: absolute;
+    width: .3px;
+    height: 25px;
+    animation: isNotTyping .5s alternate-reverse infinite;
 }
 
 #send:hover{
@@ -56,9 +90,9 @@ h1{
     background: #FFF;
 }
 
-.isNotTyping{
+/* .isNotTyping{
     animation: isNotTyping .5s alternate-reverse infinite;
-}
+} */
 
 @keyframes isNotTyping{
     from{

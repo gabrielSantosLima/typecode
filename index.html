@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="./assets/Icon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TypeCode</title>
+    <link rel="stylesheet" href="./src/styles.css">
+    <link rel="stylesheet" href="./src/styles/globalStyles.css">
+</head>
+<body>
+    <h1>TypeCode</h1>
+    <div class="content">
+        <div class="left">
+            <textarea 
+                id="input" 
+                placeholder="Digite seu código" 
+                autofocus></textarea>
+            <button id="send">Iniciar</button>
+        </div>
+        <div class="right">
+            <div id="view">
+                <pre><code id="code"><label></label></code></pre>
+                <!-- <div id="bar" class="isNotTyping"></div> -->
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="./src/index.js"></script>
+</body>
+</html>
