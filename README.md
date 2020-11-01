@@ -12,7 +12,7 @@ Para gerar **animação** de códigos para README.md de projetos
 
 ## Metas futuras
 - Modificar velocidade da animação 
-- Repetir
+- Repetir animação
 - Implementar detecção de palavras chaves no código
 - Compartilhar em gif 
 
