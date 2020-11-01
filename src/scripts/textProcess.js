@@ -1,7 +1,16 @@
-export default function textProcess(text){
-    console.log(text)
+export default function textProcess(){
+    
+    function getSplitTextObject(text){
+        const splitText = text.split("")
+        const sizeOfSplitText = splitText.length
+        
+        return {
+            splitText,
+            sizeOfSplitText
+        }
+    }
 
-    return {
-        top: 'vai'
+    return{
+        getSplitTextObject
     }
 }

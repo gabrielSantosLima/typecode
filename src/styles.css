@@ -64,7 +64,7 @@ h1{
     box-shadow: 1px 1px 10px 1px rgba(255, 255, 255, .1);
 }
 
-#send{
+#start{
     color: #FFF;
     background: #000;
     border-radius: 8px;
@@ -84,15 +84,11 @@ label:last-child::after{
     animation: isNotTyping .5s alternate-reverse infinite;
 }
 
-#send:hover{
+#start:hover{
     font-weight: bold;
     color: #000;
     background: #FFF;
 }
-
-/* .isNotTyping{
-    animation: isNotTyping .5s alternate-reverse infinite;
-} */
 
 @keyframes isNotTyping{
     from{
