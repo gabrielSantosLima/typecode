@@ -44,8 +44,6 @@ h1{
 #view #code{
     overflow: hidden;
     max-width: 100%;
-    display: flex;
-    flex-wrap: wrap;
 }
 
 #view #bar{
@@ -64,31 +62,55 @@ h1{
     box-shadow: 1px 1px 10px 1px rgba(255, 255, 255, .1);
 }
 
-#start{
+.button-group{
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.button{
     color: #FFF;
     background: #000;
     border-radius: 8px;
     box-shadow: 1px 1px 10px 1px rgba(255, 255, 255, .1);
     width: 100px;
     height: 40px;
-    margin-top: 20px;
     transition: .4s;
+}
+
+select{
+    color: #FFF;
+    background: #000;
+    border-radius: 8px;
+    box-shadow: 1px 1px 10px 1px rgba(255, 255, 255, .1);
+    height: 40px;
+    transition: .4s;
+}
+
+#start:hover, 
+select:hover, 
+option,
+.isRepeatOn{
+    font-weight: bold;
+    color: #000;
+    background: #FFF;
+}
+
+#repeat:hover{
+    box-shadow: 1px 1px 10px 1px rgba(255, 255, 255, 0.726);
 }
 
 label:last-child::after{
     content: '';
     background-color: #FFF;
     position: absolute;
-    width: .3px;
+    width: 1px;
     height: 25px;
-    animation: isNotTyping .5s alternate-reverse infinite;
+    animation: isNotTyping .5s alternate infinite;
 }
 
-#start:hover{
-    font-weight: bold;
-    color: #000;
-    background: #FFF;
-}
 
 @keyframes isNotTyping{
     from{
