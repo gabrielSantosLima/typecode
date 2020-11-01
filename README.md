@@ -9,11 +9,10 @@ Para gerar **animação** de códigos para README.md de projetos
 ## Objetivos
 - Ler a entrada do usuário
 - Gerar animação (apresentar para o usuário)
-- Features:
- - Modificar velocidade da animação 
- - Repetir
 
 ## Metas futuras
+- Modificar velocidade da animação 
+- Repetir
 - Implementar detecção de palavras chaves no código
 - Compartilhar em gif 
 
