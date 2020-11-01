@@ -1,14 +1,14 @@
-import textProcess from './textProcess.js'
-import animation from './animation.js'
+import renderView from './renderView.js'
 
-export const typecode = () => {
+const viewRender = renderView()
 
-    async function doAnimation(ctx ,text){
-        const content = await textProcess(text)
-        animation(ctx, content)
+export default function typecode(){
+
+    function start(){
+        viewRender.render()
     }
 
     return {
-        doAnimation
+        start
     }
 }
