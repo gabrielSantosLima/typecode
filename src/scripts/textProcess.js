@@ -1,6 +1,6 @@
 export default function textProcess(){
     
-    function getSplitTextObject(text){
+    function getSplitTextContent(text){
         const splitText = text.split("")
         const sizeOfSplitText = splitText.length
         
@@ -11,6 +11,6 @@ export default function textProcess(){
     }
 
     return{
-        getSplitTextObject
+        getSplitTextContent
     }
 }

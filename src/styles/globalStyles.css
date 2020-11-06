@@ -23,3 +23,7 @@ html, body, .content{
 textarea{
     resize: none;
 }
+
+button{
+    cursor: pointer;
+}

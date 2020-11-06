@@ -15,6 +15,8 @@ Para gerar **animação** de códigos para README.md de projetos
 - Repetir animação
 - Implementar detecção de palavras chaves no código
 - Compartilhar em gif 
+- Modificar velocidade da animação 
+- Repetir animação
 
 ## Estratégia
 ![Estratégia](./assets/Typecode.svg)
