@@ -11,6 +11,7 @@ Para gerar **animação** de códigos para README.md de projetos
 - Repetir animação
 - Processar texto
 - Trocar tema da aplicação ( Light / Dark Mode )
+- Adicionado Webpack
 
 ## Metas
 - Salvar preferências do usuário no `localStorage`

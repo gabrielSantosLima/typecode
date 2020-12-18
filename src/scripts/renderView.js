@@ -21,6 +21,7 @@ export default function renderView({
     const elements = document.querySelectorAll(`.light-mode`)
     
     function render(){
+        startAnimation("Type Your Code...")
         changeTheme()
         addOnClickStart()
         addOnClickRepeat()
