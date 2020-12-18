@@ -1,0 +1,16 @@
+{
+  "name": "typecode",
+  "version": "1.0.0",
+  "private": true,
+  "repository": "https://github.com/gabrielSantosLima/typecode.git",
+  "author": "Gabriel Lima",
+  "license": "MIT",
+  "scripts": {
+    "watch": "webpack --watch"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "webpack": "^5.11.0",
+    "webpack-cli": "^4.2.0"
+  }
+}
