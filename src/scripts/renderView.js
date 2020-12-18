@@ -5,19 +5,24 @@ export default function renderView({
     selectSpeed, 
     buttonRepeat, 
     buttonStart, 
-    viewCode, 
+    viewCode,
+    buttonToggleTheme,
     input 
 },config = {
     repeatOn: false,
-    speed: 200
+    speed: 200,
+    theme: 'Dark'
 }){
     const processText = textProcess()
     const { type } = textAnimation()
+    const elements = document.querySelectorAll(`.light-mode`)
     
     function render(){
+        changeTheme()
         addOnClickStart()
         addOnClickRepeat()
         addOnChangeSpeed()
+        addOnClickToggleTheme()
     }
 
     async function startAnimation(splitText){
@@ -38,14 +43,17 @@ export default function renderView({
         buttonRepeat.addEventListener('click', onToggleRepeat)
     }
     
+    function addOnClickToggleTheme(){
+        buttonToggleTheme.addEventListener('click', onToggleTheme)
+    }
+    
     function addOnChangeSpeed(){
         selectSpeed.addEventListener('change', onSetSpeed)
     }
 
     function onStart(){
         const { value } = input
-        clearViewCode()
-
+        if(!value) return
         const { splitText } = processText.getSplitTextContent(value) 
         startAnimation(splitText)
     }
@@ -53,6 +61,27 @@ export default function renderView({
     function onToggleRepeat(){
         config.repeatOn = config.repeatOn ? false : true 
         buttonRepeat.classList.toggle('isRepeatOn')
+    }
+
+    function onToggleTheme(){
+        config.theme = config.theme === 'Dark' ? 'Light' : 'Dark'
+        changeTheme()
+        buttonToggleTheme.classList.toggle('isRepeatOn')
+    }
+
+    function changeTheme(){
+        const isDark = config.theme === 'Dark' ? true : false
+        elements.forEach(element => {
+            if(!isDark){
+                element.classList.remove('dark-mode')
+                element.classList.add('light-mode')
+                buttonToggleTheme.innerHTML = 'Dark Mode'
+            }else{
+                element.classList.remove('light-mode')
+                element.classList.add('dark-mode')
+                buttonToggleTheme.innerHTML = 'Light Mode'
+            }
+        })
     }
 
     function onSetSpeed(event){

@@ -9,17 +9,18 @@
     <link rel="stylesheet" href="./src/styles/globalStyles.css">
 </head>
 <body>
-    <h1>TypeCode</h1>
-    <div class="content">
-        <div class="left">
+    <h1 class="light-mode">TypeCode</h1>
+    <div class="content light-mode">
+        <div class="left light-mode">
             <textarea 
-                id="input" 
+                id="input"
+                class="light-mode"
                 placeholder="Digite seu código" 
                 autofocus></textarea>
                 <div class="button-group">
-                    <button class="button" id="start">Iniciar</button>
-                    <button class="button" id="repeat">Repetir</button>
-                    <select id="select-speed">
+                    <button class="button light-mode" id="start">Iniciar</button>
+                    <button class="button light-mode" id="repeat">Repetir</button>
+                    <select class="light-mode" id="select-speed">
                         <option value="100" selected>0,1 Segundos</option>
                         <option value="200">0,2 Segundos</option>
                         <option value="300">0,3 Segundos</option>
@@ -28,8 +29,9 @@
                     </select>
                 </div>
         </div>
-        <div class="right">
-            <div id="view">
+        <div class="right light-mode">
+            <button class="button light-mode" id="toggle-theme">Dark Mode</button>
+            <div class="light-mode" id="view">
                 <pre><code id="code"><label></label></code></pre>
                 <!-- <div id="bar" class="isNotTyping"></div> -->
             </div>

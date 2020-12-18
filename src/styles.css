@@ -1,9 +1,74 @@
+:root{
+    --primary-light-color: #FFFFFF;
+    --secundary-light-color: #000000;
+    --primary-dark-color: #000000;
+    --secundary-dark-color: #FFFFFF;
+}
+
+.dark-mode, .light-mode{
+    transition: background-color .4s;
+}
+
+.dark-mode{
+    background-color: var(--primary-dark-color);
+    color: var(--secundary-dark-color);
+    font-weight: bold;
+}
+
+.dark-mode #view,
+.dark-mode button,
+.dark-mode select,
+.dark-mode #input{
+    box-shadow: 1px 1px 10px 1px rgba(255, 255, 255, .1);
+}
+
+.dark-mode #start:hover, 
+.dark-mode select:hover, 
+.dark-mode option,
+.dark-mode .isRepeatOn{
+    font-weight: bold;
+    background: var(--secundary-dark-color);
+    color: var(--primary-dark-color);
+}
+
+.light-mode{
+    background-color: var(--primary-light-color);
+    color: var(--secundary-light-color);
+    font-weight: bold;
+}
+
+.light-mode #view,
+.light-mode button,
+.light-mode select,
+.light-mode #input{
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, .3);
+}
+
+.light-mode #start:hover, 
+.light-mode select:hover, 
+.light-mode option,
+.light-mode .isRepeatOn{
+    font-weight: bold;
+    background: var(--secundary-light-color);
+    color: var(--primary-light-color);
+}
+
+.light-mode #toggle-theme{
+    background: var(--secundary-light-color);
+    color: var(--primary-light-color);
+}
+
+.dark-mode #toggle-theme{
+    background: var(--secundary-dark-color);
+    color: var(--primary-dark-color);
+}
+
 h1{
     font-size: 300;
-    color: #FFF;
     position: absolute;
     left: 10px;
     top: 10px;    
+    font-weight: bold !important;
 }
 
 .content{
@@ -13,32 +78,28 @@ h1{
     justify-content: space-evenly;
 }
 
-.right{
+.right, .left{
     width: 90%;
     height: 90%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.left{
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 90%;
-    height: 90%;
+}
+
+#toggle-theme{
+    margin: 8px;
+    margin-right: 6%;
+    align-self: flex-end;
 }
 
 #view{
     padding: 16px;
-    color: #FFF;
     overflow: hidden;
     width: 90vw;
     max-width: 600px;
     height: 90%;
     display: flex;
-    box-shadow: 1px 1px 10px 1px rgba(255, 255, 255, .1);
 }
 
 #view #code{
@@ -47,19 +108,15 @@ h1{
 }
 
 #view #bar{
-    background-color: #FFF;
     width: .8px;
     height: 25px;
 }
 
 #input{
-    color: #FFF;
     width: 70%;
     height: 70%;
     padding: 8px;
-    background: #000;
     border-radius: 8px;
-    box-shadow: 1px 1px 10px 1px rgba(255, 255, 255, .1);
 }
 
 .button-group{
@@ -71,40 +128,20 @@ h1{
 }
 
 .button{
-    color: #FFF;
-    background: #000;
     border-radius: 8px;
-    box-shadow: 1px 1px 10px 1px rgba(255, 255, 255, .1);
     width: 100px;
     height: 40px;
     transition: .4s;
 }
 
 select{
-    color: #FFF;
-    background: #000;
     border-radius: 8px;
-    box-shadow: 1px 1px 10px 1px rgba(255, 255, 255, .1);
     height: 40px;
     transition: .4s;
 }
 
-#start:hover, 
-select:hover, 
-option,
-.isRepeatOn{
-    font-weight: bold;
-    color: #000;
-    background: #FFF;
-}
-
-#repeat:hover{
-    box-shadow: 1px 1px 10px 1px rgba(255, 255, 255, 0.726);
-}
-
-label:last-child::after{
+.right label:last-child::after{
     content: '';
-    background-color: #FFF;
     position: absolute;
     width: 1px;
     height: 25px;
