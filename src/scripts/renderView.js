@@ -1,105 +1,71 @@
 import textAnimation from './textAnimation.js'
 import textProcess from './textProcess.js'
 
-const input = document.getElementById('input')
-const buttonStart = document.getElementById('start')
-const buttonRepeat = document.getElementById('repeat')
-const selectSpeed = document.getElementById('select-speed')
-const viewCode = document.getElementById('code')
-
-const processText = textProcess()
-const animationText = textAnimation()
-
-const textContent = {
-    splitText: [],
-    sizeOfSplitText: 0
-}
-let indexOfSplitText = 0;
-
-/*
-    config = {
-        repeatOn: false,
-        speed: 17.5 // porcentagem de velocidade
-    }
-*/
-
-export default function renderView(config = {
+export default function renderView({ 
+    selectSpeed, 
+    buttonRepeat, 
+    buttonStart, 
+    viewCode, 
+    input 
+},config = {
     repeatOn: false,
-    speed: 200 // miliseconds
+    speed: 200
 }){
+    const processText = textProcess()
+    const { type } = textAnimation()
     
     function render(){
         addOnClickStart()
         addOnClickRepeat()
-        // addOnChangeSpeed()
-        loop()
+        addOnChangeSpeed()
     }
 
-    function loop(){
-        setInterval(() => {
-            if(textContent.sizeOfSplitText == 0) return
-            
-            if(config.repeatOn && indexOfSplitText == textContent.sizeOfSplitText){
-                    clearViewCode()
-                }
-            
-            if(indexOfSplitText == textContent.sizeOfSplitText) return 
-            
-            animationText.makeTextTypeAnimation(
-                viewCode,
-                textContent.splitText[indexOfSplitText]
-            )
-                
-            nextIndexOfSplitText()
-        }, config.speed)
-    }
-
-    function setValues(){
-        const { value } = input
+    async function startAnimation(splitText){
         clearViewCode()
 
-        const { sizeOfSplitText, splitText } = processText.getSplitTextContent(value) 
-        
-        textContent.sizeOfSplitText = sizeOfSplitText
-        textContent.splitText = splitText
-    }
+        for(const text of splitText){
+            await type(text, config.speed, setViewCode)
+        }
 
+        if(config.repeatOn) startAnimation(splitText)
+    }
+    
     function addOnClickStart(){
-        buttonStart.addEventListener('click', setValues)
+        buttonStart.addEventListener('click', onStart)
     }
     
     function addOnClickRepeat(){
-        buttonRepeat.addEventListener('click', toggleRepeat)
+        buttonRepeat.addEventListener('click', onToggleRepeat)
     }
     
     function addOnChangeSpeed(){
-        selectSpeed.addEventListener('change', setSpeed)
+        selectSpeed.addEventListener('change', onSetSpeed)
     }
 
-    function setSpeed(event){
-        const { value } = event.target
-        
-        console.log(Number(value))
+    function onStart(){
+        const { value } = input
+        clearViewCode()
 
-        config.speed = Number(value)
+        const { splitText } = processText.getSplitTextContent(value) 
+        startAnimation(splitText)
     }
 
-    function toggleRepeat(){
+    function onToggleRepeat(){
         config.repeatOn = config.repeatOn ? false : true 
         buttonRepeat.classList.toggle('isRepeatOn')
     }
 
-    function clearViewCode(){
-        viewCode.innerHTML = '<label></label>'
-        resetIndexOfSplitText()
+    function onSetSpeed(event){
+        const { value } = event.target
+        config.speed = Number(value)
     }
 
-    function resetIndexOfSplitText(){
-        indexOfSplitText = 0
+    function clearViewCode(){
+        viewCode.innerHTML = '<label></label>'
     }
-    
-    function nextIndexOfSplitText(){
-        indexOfSplitText++
+
+    function setViewCode(char){
+        viewCode.innerHTML += `<label>${char}</label>`
     }
 
     return {

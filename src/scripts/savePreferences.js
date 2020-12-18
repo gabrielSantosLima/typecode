@@ -1,6 +1,6 @@
-export default function textProcess(){
+export default function savePreferences(){
     
-    function getSplitTextContent(text){
+    function saveTheme(text){
         const splitText = text.split("")
         return {
             splitText
