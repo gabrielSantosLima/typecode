@@ -1,105 +1,104 @@
 import textAnimation from './textAnimation.js'
 import textProcess from './textProcess.js'
+import savePreferences from './savePreferences.js'
 
-const input = document.getElementById('input')
-const buttonStart = document.getElementById('start')
-const buttonRepeat = document.getElementById('repeat')
-const selectSpeed = document.getElementById('select-speed')
-const viewCode = document.getElementById('code')
+const { getTheme, saveTheme } = savePreferences()
 
-const processText = textProcess()
-const animationText = textAnimation()
-
-const textContent = {
-    splitText: [],
-    sizeOfSplitText: 0
-}
-let indexOfSplitText = 0;
-
-/*
-    config = {
-        repeatOn: false,
-        speed: 17.5 // porcentagem de velocidade
-    }
-*/
-
-export default function renderView(config = {
+export default function renderView({ 
+    selectSpeed, 
+    buttonRepeat, 
+    buttonStart, 
+    viewCode,
+    buttonToggleTheme,
+    input 
+},config = {
     repeatOn: false,
-    speed: 200 // miliseconds
+    speed: 200,
+    theme: getTheme()
 }){
+    const processText = textProcess()
+    const { type } = textAnimation()
+    const elements = document.querySelectorAll(`.light-mode`)
     
     function render(){
+        changeTheme()
         addOnClickStart()
         addOnClickRepeat()
-        // addOnChangeSpeed()
-        loop()
+        addOnChangeSpeed()
+        addOnClickToggleTheme()
     }
 
-    function loop(){
-        setInterval(() => {
-            if(textContent.sizeOfSplitText == 0) return
-            
-            if(config.repeatOn && indexOfSplitText == textContent.sizeOfSplitText){
-                    clearViewCode()
-                }
-            
-            if(indexOfSplitText == textContent.sizeOfSplitText) return 
-            
-            animationText.makeTextTypeAnimation(
-                viewCode,
-                textContent.splitText[indexOfSplitText]
-            )
-                
-            nextIndexOfSplitText()
-        }, config.speed)
-    }
-
-    function setValues(){
-        const { value } = input
+    async function startAnimation(splitText){
         clearViewCode()
 
-        const { sizeOfSplitText, splitText } = processText.getSplitTextContent(value) 
-        
-        textContent.sizeOfSplitText = sizeOfSplitText
-        textContent.splitText = splitText
-    }
+        for(const text of splitText){
+            await type(text, config.speed, setViewCode)
+        }
 
+        if(config.repeatOn) startAnimation(splitText)
+    }
+    
     function addOnClickStart(){
-        buttonStart.addEventListener('click', setValues)
+        buttonStart.addEventListener('click', onStart)
     }
     
     function addOnClickRepeat(){
-        buttonRepeat.addEventListener('click', toggleRepeat)
+        buttonRepeat.addEventListener('click', onToggleRepeat)
+    }
+    
+    function addOnClickToggleTheme(){
+        buttonToggleTheme.addEventListener('click', onToggleTheme)
     }
     
     function addOnChangeSpeed(){
-        selectSpeed.addEventListener('change', setSpeed)
+        selectSpeed.addEventListener('change', onSetSpeed)
     }
 
-    function setSpeed(event){
-        const { value } = event.target
-        
-        console.log(Number(value))
-
-        config.speed = Number(value)
+    function onStart(){
+        const { value } = input
+        if(!value) return
+        const { splitText } = processText.getSplitTextContent(value) 
+        startAnimation(splitText)
     }
 
-    function toggleRepeat(){
+    function onToggleRepeat(){
         config.repeatOn = config.repeatOn ? false : true 
         buttonRepeat.classList.toggle('isRepeatOn')
     }
 
-    function clearViewCode(){
-        viewCode.innerHTML = '<label></label>'
-        resetIndexOfSplitText()
+    function onToggleTheme(){
+        config.theme = config.theme === 'Dark' ? 'Light' : 'Dark'
+        changeTheme()
+        buttonToggleTheme.classList.toggle('isRepeatOn')
+        saveTheme(config.theme)
     }
 
-    function resetIndexOfSplitText(){
-        indexOfSplitText = 0
+    function changeTheme(){
+        const isDark = config.theme === 'Dark' ? true : false
+        elements.forEach(element => {
+            if(!isDark){
+                element.classList.remove('dark-mode')
+                element.classList.add('light-mode')
+                buttonToggleTheme.innerHTML = 'Dark Mode'
+            }else{
+                element.classList.remove('light-mode')
+                element.classList.add('dark-mode')
+                buttonToggleTheme.innerHTML = 'Light Mode'
+            }
+        })
     }
-    
-    function nextIndexOfSplitText(){
-        indexOfSplitText++
+
+    function onSetSpeed(event){
+        const { value } = event.target
+        config.speed = Number(value)
+    }
+
+    function clearViewCode(){
+        viewCode.innerHTML = '<label></label>'
+    }
+
+    function setViewCode(char){
+        viewCode.innerHTML += `<label>${char}</label>`
     }
 
     return {

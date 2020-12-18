@@ -1,10 +1,15 @@
 export default function textAnimation(){
-    
-    function makeTextTypeAnimation(parent,char){
-        parent.innerHTML += `<label>${char}</label>`
+
+    function type(char, time, onType){
+        return new Promise((resolve, reject) => {
+            setTimeout(()=> {
+                onType(char)
+                resolve("Bora man")
+            }, time)
+        })
     }
 
     return {
-        makeTextTypeAnimation
+        type
     }
 }   
