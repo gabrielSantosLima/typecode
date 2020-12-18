@@ -1,4 +1,6 @@
 import typecode from './scripts/typecode.js'
+import './styles/globalStyles.css'
+import './styles.css'
 
 const input = document.getElementById('input')
 const buttonStart = document.getElementById('start')

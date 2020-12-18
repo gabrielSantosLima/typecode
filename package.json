@@ -6,10 +6,12 @@
   "author": "Gabriel Lima",
   "license": "MIT",
   "scripts": {
-    "watch": "webpack --watch"
+    "watch": "webpack --config webpack.config.js --watch "
   },
   "dependencies": {},
   "devDependencies": {
+    "css-loader": "^5.0.1",
+    "style-loader": "^2.0.0",
     "webpack": "^5.11.0",
     "webpack-cli": "^4.2.0"
   }
