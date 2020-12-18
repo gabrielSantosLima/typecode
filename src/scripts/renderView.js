@@ -1,5 +1,8 @@
 import textAnimation from './textAnimation.js'
 import textProcess from './textProcess.js'
+import savePreferences from './savePreferences.js'
+
+const { getTheme, saveTheme } = savePreferences()
 
 export default function renderView({ 
     selectSpeed, 
@@ -11,7 +14,7 @@ export default function renderView({
 },config = {
     repeatOn: false,
     speed: 200,
-    theme: 'Dark'
+    theme: getTheme()
 }){
     const processText = textProcess()
     const { type } = textAnimation()
@@ -67,6 +70,7 @@ export default function renderView({
         config.theme = config.theme === 'Dark' ? 'Light' : 'Dark'
         changeTheme()
         buttonToggleTheme.classList.toggle('isRepeatOn')
+        saveTheme(config.theme)
     }
 
     function changeTheme(){

@@ -1,7 +1,5 @@
 # TypeCode
-
-## O que é?
-Aplicação de animação de código sendo digitado.
+Uma aplicação de animação de código sendo digitado feito em HTML, CSS e JS.
 
 ## Por que?
 Para gerar **animação** de códigos para README.md de projetos
@@ -12,15 +10,18 @@ Para gerar **animação** de códigos para README.md de projetos
 - Modificar velocidade da animação 
 - Repetir animação
 - Processar texto
+- Trocar tema da aplicação ( Light / Dark Mode )
 
 ## Metas
-- Trocar tema da aplicação ( Light / Dark Mode )
 - Salvar preferências do usuário no `localStorage`
   - Tema escolhido
   - Velocidade escolhida
-- Implementar detecção de palavras chaves no código
 - Grava gif da animação 
-- Fazer o download do gif da animação 
+- Fazer o download do gif da animação
+- Implementar responsividade no site
+
+## Metas Avançadas
+- Implementar detecção de palavras chaves no código
 
 ## Estratégia
 ![Estratégia](./assets/Typecode.svg)
